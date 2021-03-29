@@ -1,0 +1,165 @@
+<html>
+                <head>
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                <title>090 Activity Project 4</title>
+                </head>
+                <body>
+                <div class="container">
+                <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <p class="lead"><p>You should now know how to structure your visualizations as JavaScript objects, using the following pattern...</p>
+
+<pre class="prettyprint linenums">// Constructor function
+VisualizationName = function(_parentElement){
+    this.parentElement = _parentElement;
+
+    this.initVis();
+};
+
+// Add static elements
+VisualizationName.prototype.initVis = function(){
+    var vis = this;
+
+    vis.wrangleData();
+};
+
+// Filter data
+VisualizationName.prototype.wrangleData = function(){
+    var vis = this;
+
+    vis.updateVis();
+};
+
+// Trigger updates
+VisualizationName.prototype.updateVis = function(){
+    var vis = this;
+
+};</pre>
+
+
+
+
+
+<p>You have also been introduced to the D3 brush function, which you can use to create a context + focus effect...</p>
+
+<pre class="prettyprint linenums">// Initialize brush component
+vis.brush = d3.brushX()
+    .handleSize(10)
+    .extent([[0, 0], [vis.width, vis.height]])
+    .on("brush", brushed);
+
+// Append brush component
+vis.brushComponent = vis.g.append("g")
+    .attr("class", "brush")
+    .call(vis.brush);
+
+// Event handler function
+function brushed() {
+    // update focus vis
+}</pre>
+
+
+
+
+
+<p>Word of your expertise in data visualization has gotten around. You have been approached Mr. Arlington, an executive at FreedomCorp Ltd, a large distribution conglomerate in the US, who wants you to build a data dashboard to keep tabs on their different sales teams. <br></p>
+
+
+
+
+
+<p>The company sells wholesale goods to small businesses around the country. They sell bulk orders of electronics, household appliances, construction materials and furniture, to different distributors around the country.</p>
+
+
+
+
+
+<figure><img height="174" src="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2018-02-20_16-40-22-96cd9af4791120dfc7d77de13b1f463c.png" width="395"></figure>
+
+
+
+
+
+
+
+<p>FreedomCorp’s sales force is divided into 4 teams, who each control distribution in their own area:<br></p>
+
+
+
+
+
+
+
+
+
+
+
+<ul><li>North-East</li><li>West</li><li>South</li><li>Midwest</li></ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Every day, each team makes phone calls to small businesses in their region, to see if they can sell any of their products to them.  For every call, the company keeps a record of the call duration, the result of the call (if a sale was made, rejected, or if the call was stalled), the dollar value of revenue that the call generated, the category that the sale fell into, and the number of raw units that had been purchased. </p>
+
+
+
+
+
+
+
+
+
+
+
+<p>Mr. Arlington has provided you some sketches of what your platform should look like. </p>
+
+
+
+
+
+
+
+<figure><img height="360" src="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2018-02-20_16-42-23-bc08084df3f18869c25c149d8610f4b0.png" width="678"></figure>
+
+
+
+
+
+
+
+<p>He wants to see a stacked area chart on the main graph, with a timeline below that lets you brush over a bar chart. The stacked area chart should display metrics for revenue, call duration, and units sold, broken down between the different teams. He also wants to see a donut chart and three bar charts on the side, which should provide summary data in the time range that the user chooses to select.<br></p>
+
+
+
+
+
+<p>You have already pieced together a bunch of code from previous projects that you have worked on (included in the resources section to this activity). You should complete this project by yourself, using any resources that you can find online.</p>
+
+
+
+<p>If you get stuck, my solution is available on the course GitHub page <a href="https://github.com/adamjanes/udemy-d3/tree/master/10/10.08.1" rel="nofollow">here</a>.</p></p>
+                </div>
+                </div>
+                </div>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                </body>
+                </html>

@@ -1,0 +1,224 @@
+<html>
+                <head>
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                <title>046 Activity Project 2</title>
+                </head>
+                <body>
+                <div class="container">
+                <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <p class="lead"><p>You now know how to use the D3 interval function to create a loop to continuously run code in your browser...</p>
+
+<pre class="prettyprint linenums">d3.interval(function(){
+    // code goes here
+}, 1000);</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>I also introduced the D3 update pattern in this section for building dynamic visualizations...</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="prettyprint linenums">// JOIN new data with old elements.
+var rects = g.selectAll("rect")
+    .data(data);
+
+// EXIT old elements not present in new data.
+rects.exit().remove();
+
+// UPDATE old elements present in new data.
+rects
+    .attr("y", function(d){ return y(d.revenue); })
+    .attr("x", function(d){ return x(d.month) })
+    .attr("height", function(d){ return height - y(d.revenue); })
+    .attr("width", x.bandwidth);
+
+// ENTER new elements present in new data.
+rects.enter()
+    .append("rect")
+        .attr("y", function(d){ return y(d.revenue); })
+        .attr("x", function(d){ return x(d.month) })
+        .attr("height", function(d){ return height - y(d.revenue); })
+        .attr("width", x.bandwidth)
+        .attr("fill", "grey");</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>For your second project, you will be making a clone of a famous visualization from <a href="https://www.gapminder.org/" rel="nofollow">Gapminder</a>, showing how life expectancy has been increasing over the years with GDP per capita. <br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Take a look at <a href="https://www.youtube.com/watch?v=jbkSRLYSojo&amp;t=2s" rel="nofollow">this video here</a>,  which shows the graph that we want to make. </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure><img height="277" src="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2018-02-20_16-33-32-5da75d50fea797c4d537c6e1a0e8532c.png" width="514"></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Just like last time, I’ve split up the components of this project into manageable chunks to give you some guidance and to make the process simpler. I am also providing you with a few extra hints to make the project less daunting:<br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol>
+<li> Take a look at the data that we're working with in your browser console. If there are any null values for one of the countries in one of the years, use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter" rel="nofollow">filter</a> on the array to exclude that country-year data point from the dataset.</li><li>Make a static scatter plot for the first year in our data.<ol><li>Set up some sensible dimensions for your visualization, and make it conform to the D3 margin convention.</li><li>Write scales for each axis (GDP-per-capita on the x-axis, life expectancy on the y-axis)<ol><li>Suggested domains: x – <code>[300, 150000]</code> ; y – <code>[0, 90]</code> .</li><li>The x scale should be a logarithmic scale.</li></ol></li><li>Append both axes with D3's axis generators.<ol><li>Use TickValues() to manually set our x-axis values of 400, 4,000, and 40,000.</li></ol></li><li>Append circles for each country in one year (e.g. the first year of our data)</li></ol></li><li>Write an <code>update()</code>  function that makes use of the JOIN/EXIT/UPDATE/ENTER pattern discussed in this section.<ol><li>The data join needs to contain a key function linking it to individual countries, or else it won’t work.</li><li>Put a transition on the update function of 100ms (it can’t be larger than the d3.interval time).</li></ol></li><li>Add a loop with <code>d3.interval()</code> , calling the <code>update()</code>  function on each iteration of the loop.<ol><li>On each run of the <code>update()</code>  function, you should be passing in a different array of countries.</li><li>The visualization should go from 1800 to 2015, then reset itself – how could you achieve this with something like our “flag” variable?</li></ol></li><li>Change the radius dynamically so that it represents the population of the given country in a given year.<ol><li>You’ll need to use another scale for this (the range should be [5, 25]).</li><li>Make sure to associate population with the <strong>area</strong>, rather than the <strong>radius</strong> of the circle! You might need to play around with this scale to find the right transformation to use. (Hint: Area = PI * Radius^2)</li></ol></li><li>Change the fill of the circles to associate them to their continent.<ol><li>You’ll need to write an ordinal scale to do this. Use one of the D3 color schemes to make things simpler.</li></ol></li><li>Add axis labels to the x and y axis, and a year marker that updates with every run of the update loop.</li></ol>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>You can find the project template files attached to this activity. If you get stuck, then my solution is available <a href="https://github.com/adamjanes/udemy-d3/tree/master/05/5.10.1" rel="nofollow">here</a> on the course GitHub page.</p></p>
+                </div>
+                </div>
+                </div>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                </body>
+                </html>

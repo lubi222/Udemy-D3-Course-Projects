@@ -1,0 +1,571 @@
+<html>
+                <head>
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+                <title>056 Activity Project 3</title>
+                <style>
+                    * {
+                        color: white;
+                    }
+                    code {
+                        color: black;
+                    }
+                </style>
+                </head>
+                <body style="background-color: #444">
+                <div class="container">
+                <div class="row">
+                <div class="col-md-10 col-md-offset-1">
+                    <p class="lead"><p>In this section, I introduced formatting and parsing in D3...</p>
+
+<pre class="prettyprint linenums">d3.format(",.0f")(1423.444) // 1,423
+
+var parseTime = d3.timeParse("%d/%m/%y")
+var example = parseTime("19/12/1993") // Sun Dec 19 1993 00:00:00 GMT+0700 (+07)
+
+var formatTime = d3.timeFormat("%m-%d-%y")
+formatTime(example) // 12-19-1993</pre>
+
+
+
+
+
+
+
+
+
+<p>By now, you should feel comfortable attaching events to your SVGs with the <code>.on()</code>method...<br></p>
+
+
+
+
+
+
+
+<pre class="prettyprint linenums">circles.enter().append("circle")
+    .attr("class", "enter")
+    .attr("fill", function(d) { return continentColor(d.continent); })
+    .on("mouseover", tip.show)
+    .on("mouseout", tip.hide)</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>As well as grabbing elements on the page with jQuery...</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="prettyprint linenums">$("#some-button")
+    .on("click", function(){
+        // do something
+    });</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>For your third class project, you'll be building a line chart that looks like this: </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure><img src="https://udemy-images.s3.amazonaws.com:443/redactor/raw/2018-02-20_16-36-56-191672068de37a9110c68c81406a9c86.png"><br></figure>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Once again, you should tackle this project in small pieces, gradually building your chart up from a static implementation. For this project, I’m starting you off with the line chart code that I showed you in this section. <br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>Your page has already been set up with everything that you’ll need.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<ol>
+<li>Change the source of your data from the example data in <code>data/example.json</code>  to our cryptocurrency data in <code>data/coins.json</code> . <ol>
+<li>Make a console log of the data that you're loading in, to see what the structure of your data looks like.</li>
+<li>You’ll need to clean the data so that we can use it with D3. Write some code that iterates over every coin, and converts our values to be used with D3.</li>
+</ol></li>
+
+<li>Start off by rendering a static line chart to the screen using the data for just one coin (e.g. using the “bitcoin” array in your data).</li><li>Create an <code>update()</code>  function, which you can call whenever an event gets fired.<ol><li>Move any code into this <code>update() </code> function that will need to adjust to a changing dataset.</li><li>Append your line path once at the top of your file, then adjust its <code>"d"</code>  attribute every time the graph updates, using a different <code>line()</code>  function.</li><li>Add transitions to your line and your axes, so that your visualization updates seamlessly.</li></ol></li><li>Add a listener to the <code>change</code>  event of the <code>#coin-select</code>  and <code>#var-select</code>  select boxes.<ol><li>Whenever the selections are changed, this should fire your <code>update()</code>  function.</li><li>Make some edits to your <code>update()</code>  function, so that the coin and variable that you're using is coming from these select boxes.</li><li>Change the text of your y-axis label depending on the variable that we're looking at.</li></ol></li><li>Add a date slider to the <code>#date-slider</code>  div.<ol><li>Initialize the slider with some sensible values, and attach a listener onto the <code>slide</code>  event to trigger your <code>update()</code> function.</li><li>In your <code>update()</code>  function, use the <code>filter()</code>  method of your data array to only include dates within the range set by your slider.</li></ol></li></ol>
+
+
+
+
+
+<p>You might find this code useful for your y-axis ticks, so that the numbers can be formatted with different abbreviations (e.g. 1.5K, 2.2M, 43B). You can use this with the <code>tickFormat()</code> method. <br></p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<pre class="prettyprint linenums">var formatSi = d3.format(".2s");
+function formatAbbreviation(x) {
+    var s = formatSi(x);
+    switch (s[s.length - 1]) {
+        case "G": return s.slice(0, -1) + "B";
+        case "k": return s.slice(0, -1) + "K";
+    }
+    return s;
+}</pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<p>If you get stuck at any point in completing this project, then my solution is available on the course GitHub page <a href="https://github.com/adamjanes/udemy-d3/tree/master/06/6.10.1" rel="nofollow">here</a>.</p></p>
+                </div>
+                </div>
+                </div>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+                </body>
+                </html>
